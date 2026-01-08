@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
-public class MainController extends HttpServlet {
+public class mainController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,18 +34,19 @@ public class MainController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet controller</title>");
+            out.println("<title>Servlet mainController</title>");            
             out.println("</head>");
             out.println("<body>");
             String txtUsername = request.getParameter("txtUsername");
             String txtPassword = request.getParameter("txtPassword");
-            if (txtUsername.equalsIgnoreCase("admin")
+            
+            String url = "";
+if (txtUsername.equalsIgnoreCase("admin")
                     && txtPassword.equals("admin")) {
                 out.println("Dang nhap thanh cong!");
             } else {
                 out.println("Dang nhap that bai! Sai username hoac password.");
-            }
-            out.println("</body>");
+            }            out.println("</body>");
             out.println("</html>");
         }
     }
