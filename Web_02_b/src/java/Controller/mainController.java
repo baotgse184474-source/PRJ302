@@ -34,17 +34,44 @@ public class mainController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet mainController</title>");            
+            out.println("<title>Servlet mainController</title>");
             out.println("</head>");
             out.println("<body>");
-            
+
             String txtA = request.getParameter("A");
             String txtB = request.getParameter("B");
-            double a = Double.parseDouble(txtA);
-            double b = Double.parseDouble(txtB);
-            
-            out.println( a + " + " + b + " = " + (a+b));
-            
+            String op = request.getParameter("txtOp");
+
+            double a = 0;
+            double b = 0;
+            double result = 0;
+            try {
+                a = Double.parseDouble(txtA);
+                b = Double.parseDouble(txtB);
+
+                switch (op) {
+                    case "+":
+                        result = a + b;
+                        break;
+                    case "-":
+                        result = a - b;
+                        break;
+                    case "*":
+                        result = a - b;
+                        break;
+                    case "/":
+                        result = a / b;
+                        break;
+                    default:
+                        throw new AssertionError();
+
+                }
+
+                out.println(a + op + b + " = " + result);
+            } catch (Exception e) {
+                out.println("The program is not run!");
+            }
+
             out.println("</body>");
             out.println("</html>");
         }
