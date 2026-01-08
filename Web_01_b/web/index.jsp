@@ -21,24 +21,26 @@
             Status  <input type ="radio" name ="txtStatus" value="Single" checked ="checked"/> Single <br/>
             <input type ="radio" name ="txtStatus" value="Married"/> Married <br/>
             <input type ="radio" name ="txtStatus" value="Divorsed"/> Divorsed <br/>
-            ComboBox <select name="txtCombo">
+            <%--  cho phép chọn 1 giá trị trong danh sách --%>
+            ComboBox <select name="txtCombo"> 
                 <option value="1">JSP and Servlet </option>
                 <option value="2">EJB</option>
             </select><br>
+             <%-- size: hiển thị 3 dòng --%>
             Multiple <select name ="txtMul" multiple size="3">
                 <option value="JSP">JSP and Servlet </option>
                 <option value="EJB">EJB</option>
                 <option value ="Java"> Core Java </option>
             </select><br/>
-            TextArea 
+            TextArea  <%-- nhập văn bản nhiều dòng --%>
             <textarea name ="txtArea" rows="4" cols="20">
-                    This is a form parameters demo!!!!
+                     This is a form parameters demo!!!!
             </textarea><br> 
-            <input type="submit" name="txtSubmit" value ="Submit Query">
-            <input type="submit" name="txtRegister" value="Register">
-            <input type="reset" name ="txtReset">
-            <input type ="button" name ="txtB" value="JavaScript" onclick="">
-            </form>
+            <input type="submit" name="txtSubmit" value ="Submit Query"/>
+            <input type="submit" name="txtRegister" value="Register"/>
+            <input type="Reset" name ="txtReset"/>
+            <input type ="button" name ="txtB" value="JavaScript" onclick=""/>
 
+            </form>
     </body>
 </html>
