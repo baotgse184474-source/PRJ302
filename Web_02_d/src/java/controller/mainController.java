@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,12 +42,16 @@ public class mainController extends HttpServlet {
             String txtPassword = request.getParameter("txtPassword");
 
             String url = "";
-            if (txtUsername.equalsIgnoreCase("admin") && txtPassword.equals("admin")) {
-                out.println("Dang nhap thanh cong!");
+
+            if (txtUsername.equalsIgnoreCase("admin")
+                    && txtPassword.equals("admin")) {
+                url = "a.jsp";
             } else {
-                out.println("Dang nhap that bai! Sai username hoac password.");
+                url = "b.jsp";
             }
-            
+
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
             out.println("</body>");
             out.println("</html>");
         }
