@@ -64,9 +64,7 @@ public class mainController extends HttpServlet {
                         break;
                     default:
                         throw new AssertionError();
-
                 }
-
                 out.println(a + op + b + " = " + result);
             } catch (Exception e) {
                 out.println("The program is not run!");
