@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="models.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,10 +13,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            UserDTO user = (UserDTO)request.getAttribute("user");
-        %>
+        <%-- 
+getAtribute trả về object, muốn dùng UserDTO phải ép kiểu 
         
+        --%>
+        <%
+            UserDTO user = (UserDTO)request.getAttribute("user"); 
+        %>
+
         Welcome <%=user.getFullName()%>,<br/>
         Bang dieu khien <br/>
         Tinh nang 1 <br/>

@@ -1,10 +1,9 @@
 <%-- 
     Document   : a
-    Created on : Jan 15, 2026, 12:41:41 PM
+    Created on : Jan 19, 2026, 2:04:50 PM
     Author     : User
 --%>
 
-<%@page import="models.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-          <%
+  <%
             UserDTO user = (UserDTO)request.getAttribute("user");
         %>
         
@@ -21,6 +20,5 @@
         Bang dieu khien <br/>
         Tinh nang 1 <br/>
         Tinh nang 2 <br/>
-        Tinh nang 3 <br/>
-    </body>
+        Tinh nang 3 <br/>    </body>
 </html>

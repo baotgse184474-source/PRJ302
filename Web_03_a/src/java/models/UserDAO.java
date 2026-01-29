@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author User
  */
 public class UserDAO {
+    
     ArrayList<UserDTO> list = new ArrayList<>();
 
     public UserDAO() {
