@@ -18,7 +18,7 @@
             Username: <input type="text" name="txtUsername" required="required" /> <br/>
             Password: <input type="password" name="txtPassword" required="required"  /> <br/>
             <input type="submit" value="Login" />
-        </form>
+        </form> <!<!-- Không rỗng thì in dòng chữ đỏ -->
         <c:if test="not empty message">
             <span style="color:red"> ${message}</span>
         </c:if>

@@ -14,7 +14,7 @@
     </head>
     <body>
         <%
-            UserDTO u = (UserDTO)session.getAttribute("user");
+            UserDTO u = (UserDTO)session.getAttribute("user"); // lấy user đã lưu trong session
             if (u!=null){       
         %>
                 <h1>Welcome, <%=u.getFullName()%> </h1>

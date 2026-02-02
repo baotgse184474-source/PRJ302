@@ -21,14 +21,13 @@ public class UniversityDAO {
 
     public ArrayList<UniversityDTO> searchByColum(String column, String value) {
         ArrayList<UniversityDTO> result = new ArrayList<>();
-        try { // tránh sập khi lỗi
-            Connection conn = DbUtils.getConnection(); // kết nối database trong sql
-            String sql = "SELECT * FROM tblUniversity WHERE " + column + "=?"; //Viết câu SQL tìm dữ liệu
-            PreparedStatement ps = conn.prepareStatement(sql); //Chuẩn bị sẵn câu SQL
-            ps.setString(1, value); // 1: dấu ? thứ nhất, value: giá trị cần tìm
-            ResultSet rs = ps.executeQuery(); // Kết quả trả về là bảng dữ liệu
-            while (rs.next()) { // duyệt từng kết quả
-                //Lấy dữ liệu từ database
+        try {
+            Connection conn = DbUtils.getConnection();
+            String sql = "SELECT * FROM tblUniversity WHERE " + column + "=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, value);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
                 String shortName = rs.getString("shortName");
@@ -42,7 +41,6 @@ public class UniversityDAO {
                 int totalFaculties = rs.getInt("totalFaculties");
                 boolean isDraft = rs.getBoolean("isDraft");
 
-                // Gom tất cả dữ liệu của 1 trường thành 1 object
                 UniversityDTO u = new UniversityDTO(id, name, shortName, description, foundedYear, address, city, region, type, totalStudents, totalFaculties, isDraft);
                 result.add(u);
             }
@@ -57,9 +55,9 @@ public class UniversityDAO {
             Connection conn = DbUtils.getConnection();
             String sql = "SELECT * FROM tblUniversity WHERE " + column + " LIKE ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, "%" + value + "%"); // Gán giá trị tìm kiếm (
-            System.out.println(ps.toString()); // In SQL ra console
-            ResultSet rs = ps.executeQuery(); // Chạy câu SQL, trả về nhiều dòng kết quả
+            ps.setString(1, "%" + value + "%");
+            System.out.println(ps.toString());
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
@@ -95,4 +93,19 @@ public class UniversityDAO {
         return filterByColum("name", name);
     }
 
+    public boolean softDelete(String id){
+        try {
+            Connection coon = DbUtils.getConnection();
+            String sql = "UPDATE tbUniversity SET status=0 WHERE id=?";
+            PreparedStatement ps = coon.prepareStatement(sql);
+            ps.setString(1,id);
+            System.out.println(id + "-"+sql);
+            return ps.executeUpdate() > 0;
+        }catch(Exception e){
+            
+        }
+        return false;
+            
+        
+    }
 }
