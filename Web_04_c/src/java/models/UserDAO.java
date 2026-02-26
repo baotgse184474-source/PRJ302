@@ -30,7 +30,8 @@ public class UserDAO {
             // SELECT * FROM [dbo].[tblUsers] WHERE [userID]='x' or 1=1 --' AND [password]='hacker';
             String sql = "SELECT * FROM tblUsers WHERE userID=?";
             System.out.println(sql);
-            PreparedStatement pst = conn.prepareStatement(sql);
+            PreparedStatement pst = conn.prepareStatement(sql); 
+// thực thi sql có tham số
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();
 

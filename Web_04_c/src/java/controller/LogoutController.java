@@ -28,6 +28,12 @@ public class LogoutController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+//    a.jsp
+//→ MainController
+//→ LogoutController
+//→ session.invalidate()
+//→ về login.jsp
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();

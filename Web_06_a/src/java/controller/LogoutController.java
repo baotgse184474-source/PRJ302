@@ -32,11 +32,13 @@ public class LogoutController extends HttpServlet {
          request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        // nếu đang đăng nhập, xóa toàn bộ session
         if(session.getAttribute("user")!=null){
             // huy bo toan bo noi dung session
             session.invalidate();
         }
         String url = "login.jsp";
+        // ko dữ lại request cũ, tạo request mới
         response.sendRedirect(url);
     }
 

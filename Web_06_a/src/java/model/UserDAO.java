@@ -23,16 +23,22 @@ public class UserDAO {
     public UserDTO searchById(String username) {
         try {
             Connection conn = DbUtils.getConnection();
+            // tạo sql để gửi lên database
             String sql = "SELECT * FROM tblUsers "
                     + " WHERE userID=?";
+           
             System.out.println(sql);
+  
+            // ko có cái này thì ko gửi đc
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, username);
-            ResultSet rs = pst.executeQuery();
+            pst.setString(1, username); // thêm giá trị vào ? thứ 1, sql vẫn là ?
+            // trả về bản kết quả
+            ResultSet rs = pst.executeQuery(); // gửi đi hỏi database
             
             UserDTO user = null;
+            // lặp từng cột, hết thì false
             while (rs.next()) {
-                String userID = rs.getString("userID");
+                String userID = rs.getString("userID"); // lấy dữ liệu cột userID
                 String fullName = rs.getString("fullName");
                 String password = rs.getString("password");
                 String roleID = rs.getString("roleID");

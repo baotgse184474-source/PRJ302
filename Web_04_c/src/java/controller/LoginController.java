@@ -32,18 +32,24 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String url = "";
+        String url = "";
+        // lấy session hiện tại, lưu trạng thái đăng nhập
         HttpSession session = request.getSession();
+        // nếu chưa login
         if (session.getAttribute("user") == null) {
             String txtUsername = request.getParameter("txtUsername");
             String txtPassword = request.getParameter("txtPassword");
 
+            // gọi userDAO check
             UserDAO udao = new UserDAO();
             UserDTO user = udao.login(txtUsername, txtPassword);
+            
+            // nếu user tồn tại
             if (user != null) {
                 url = "a.jsp";
                 session.setAttribute("user", user);
             } else {
+                // sai quay lại login và hiển thị lỗi
                 url = "login.jsp";
                 request.setAttribute("message", "Invalid username or password!");
             }

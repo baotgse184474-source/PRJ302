@@ -33,15 +33,22 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String action = request.getParameter("action")+"";
-        String url = "login.jsp";
+        
+        // lấy action từ request, gán vào biếng action
+        // vd: MainController?action=login --> action = login
+        String action = request.getParameter("action")+""; 
+        
+        // ko có action thì login
+        String url = "login.jsp"; 
         if (action.equals("login")) {
             url = "LoginController";
         } else if (action.equals("logout")) {
             url = "LogoutController";
         }
+        
+        // điều hướng chuyển trang theo url để xử lí tiếp
         RequestDispatcher rd = request.getRequestDispatcher(url);
-        rd.forward(request, response);
+        rd.forward(request, response); // chuyển xử lí nội bộ server, ko đổi url
 
     }
 

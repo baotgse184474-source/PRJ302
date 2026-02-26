@@ -35,6 +35,7 @@ public class MainController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        // action từ form
         String action = request.getParameter("action");
         String url = "login";
          
@@ -48,6 +49,7 @@ public class MainController extends HttpServlet {
         
         // Chuyen trang
         RequestDispatcher rd = request.getRequestDispatcher(url);
+        //forward: chuyển quyền xử lí
         rd.forward(request, response);
         
     }

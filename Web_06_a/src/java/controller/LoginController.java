@@ -36,27 +36,38 @@ public class LoginController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String url = "";
-        HttpSession session = request.getSession();
+        
+      
+        HttpSession session = request.getSession(); // lưu thông tin đn của user
+        
+        
         if (session.getAttribute("user") == null) {
+            // lấy data từ login
             String txtUsername = request.getParameter("txtUsername");
             String txtPassword = request.getParameter("txtPassword");
 
+            
             UserDAO udao = new UserDAO();
             UserDTO user = udao.login(txtUsername, txtPassword);
             System.out.println(user);
+            // nếu đúng tk/mk
             if (user != null) {
+                // nếu tk hoạt động
                 if (user.isStatus()) {
                     url = "welcome.jsp";
+                    // lưu thông tin user vào sesion
                     session.setAttribute("user", user);
                 } else {
                     url = "e403.jsp";
                 }
             } else {
+                // nếu đn sai, quay lại trang và gửi hông báo lỗi
                 url = "login.jsp";
                 request.setAttribute("message", "Invalid username or password!");
             }
 
         } else {
+            // nếu login từ trước
             url = "welcome.jsp";
         }
         // Chuyen trang

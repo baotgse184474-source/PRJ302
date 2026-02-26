@@ -19,13 +19,16 @@ public class UniversityDAO {
     public UniversityDAO() {
     }
 
+    // có thể bỏ search và chỉ dùng filter
     public ArrayList<UniversityDTO> searchByColum(String column, String value) {
+        //list chứa kết quả
         ArrayList<UniversityDTO> result = new ArrayList<>();
         try { // tránh sập khi lỗi
             Connection conn = DbUtils.getConnection(); // kết nối database trong sql
             String sql = "SELECT * FROM tblUniversity WHERE " + column + "=?"; //Viết câu SQL tìm dữ liệu
             PreparedStatement ps = conn.prepareStatement(sql); //Chuẩn bị sẵn câu SQL
             ps.setString(1, value); // 1: dấu ? thứ nhất, value: giá trị cần tìm
+            // trả về toàn bộ row thõa đk where
             ResultSet rs = ps.executeQuery(); // Kết quả trả về là bảng dữ liệu
             while (rs.next()) { // duyệt từng kết quả
                 //Lấy dữ liệu từ database
@@ -51,13 +54,14 @@ public class UniversityDAO {
         return result;
     }
 
+    // lọc theo từ khóa
     public ArrayList<UniversityDTO> filterByColum(String column, String value) {
         ArrayList<UniversityDTO> result = new ArrayList<>();
         try {
-            Connection conn = DbUtils.getConnection();
+            Connection conn = DbUtils.getConnection(); // connec đến sql
             String sql = "SELECT * FROM tblUniversity WHERE " + column + " LIKE ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, "%" + value + "%"); // Gán giá trị tìm kiếm (
+            ps.setString(1, "%" + value + "%"); // "%" chứa từ cần tìm
             System.out.println(ps.toString()); // In SQL ra console
             ResultSet rs = ps.executeQuery(); // Chạy câu SQL, trả về nhiều dòng kết quả
             while (rs.next()) {
@@ -91,6 +95,7 @@ public class UniversityDAO {
         return searchByColum("name", name);
     }
 
+    // đề thi thường filter
     public ArrayList<UniversityDTO> filterByName(String name) {
         return filterByColum("name", name);
     }

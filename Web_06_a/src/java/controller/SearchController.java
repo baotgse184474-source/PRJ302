@@ -35,6 +35,7 @@ public class SearchController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        // lấy giá trị người dùng nhập tìm kiếm, bên jsp
         String keywords = request.getParameter("keywords");
         if (keywords == null) {
             keywords = "";
@@ -46,6 +47,7 @@ public class SearchController extends HttpServlet {
         if (keywords.trim().length() > 0) {
             list = udao.filterByName(keywords);
         }
+        // gửi qua jsp để hiển thị
         request.setAttribute("list", list);
         request.setAttribute("keywords", keywords);
         String url = "search.jsp";
